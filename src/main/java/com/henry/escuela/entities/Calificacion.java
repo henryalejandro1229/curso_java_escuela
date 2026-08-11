@@ -29,7 +29,7 @@ public class Calificacion {
     @Column(name = "FECHA_REGISTRO", nullable = false)
     private LocalDate fechaRegistro = LocalDate.now();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_INSCRIPCION", nullable = false, unique = true)
     private Inscripcion inscripcion;
 }
