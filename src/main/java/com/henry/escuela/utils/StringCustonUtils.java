@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class StringCustonUtils {
 
-    private static final DateTimeFormatter FORMATOFECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+    public static final DateTimeFormatter FORMATOFECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public static void validarNoVacio(String texto, String mensaje) {
         if (texto == null || texto.isBlank())
@@ -26,7 +26,7 @@ public class StringCustonUtils {
                 .replace("ú", "u").replace("ü", "u");
     }
 
-    public static String localDateAAstring(LocalDate fecha) {
+    public static String localDateAString(LocalDate fecha) {
         return fecha == null ? null : fecha.format(FORMATOFECHA);
     }
 }

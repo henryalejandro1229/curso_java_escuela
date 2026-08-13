@@ -1,10 +1,17 @@
 package com.henry.escuela.entities;
 
+import com.henry.escuela.dto.datos.DatosMaestro;
+import com.henry.escuela.utils.StringCustonUtils;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "GRUPOS", uniqueConstraints = @UniqueConstraint(
@@ -35,6 +42,18 @@ public class Grupo {
     private Aula aula;
 
     @Column(name = "PERIODO", length = 20, nullable = false)
+    @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])$", message = "El periodo debe tener el formato YYYY-MM")
     private String periodo;
 
+    @Builder.Default
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo",
+            orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Horario> horarios = new ArrayList<>();
+
+    public void actualizar(Curso curso, Maestro maestro, Aula aula, String periodo) {
+        this.curso = curso;
+        this.maestro = maestro;
+        this.aula = aula;
+        this.periodo = periodo;
+    }
 }

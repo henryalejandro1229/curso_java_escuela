@@ -1,4 +1,7 @@
 package com.henry.escuela.exceptions;
 
-public class EntidadRelacionadaException extends Throwable {
+public class EntidadRelacionadaException extends RuntimeException {
+    public EntidadRelacionadaException(String message) {
+        super(message);
+    }
 }

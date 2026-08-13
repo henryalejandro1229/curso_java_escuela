@@ -34,4 +34,18 @@ public class Horario {
     @Column(name = "HORA_FIN", length = 5, nullable = false)
     private String horaFin;
 
+    public void actualizar(Grupo grupo, DiaSemana diaSemana, String horaInicio, String horaFin) {
+        this.grupo = grupo;
+        this.diaSemana = diaSemana;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+    }
+
+    public void asignarGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+    public void asignarDiaSemana(DiaSemana diaSemana) {
+        this.diaSemana = diaSemana;
+    }
 }

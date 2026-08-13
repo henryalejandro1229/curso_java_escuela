@@ -3,6 +3,7 @@ package com.henry.escuela.mappers;
 import com.henry.escuela.dto.datos.DatosCurso;
 import com.henry.escuela.dto.maestros.MaestroRequest;
 import com.henry.escuela.dto.maestros.MaestroResponse;
+import com.henry.escuela.entities.Alumno;
 import com.henry.escuela.entities.Grupo;
 import com.henry.escuela.entities.Maestro;
 import lombok.AllArgsConstructor;

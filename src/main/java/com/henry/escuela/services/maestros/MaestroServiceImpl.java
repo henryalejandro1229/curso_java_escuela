@@ -3,7 +3,9 @@ package com.henry.escuela.services.maestros;
 import com.henry.escuela.dto.maestros.MaestroRequest;
 import com.henry.escuela.dto.maestros.MaestroResponse;
 import com.henry.escuela.entities.Maestro;
+import com.henry.escuela.exceptions.EntidadRelacionadaException;
 import com.henry.escuela.mappers.MaestroMapper;
+import com.henry.escuela.repositories.GrupoRepository;
 import com.henry.escuela.repositories.MaestroRepository;
 import com.henry.escuela.utils.ServiceUtils;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,8 @@ public class MaestroServiceImpl implements MaestroService{
 
     private final MaestroRepository maestroRepository;
 
+    private final GrupoRepository grupoRepository;
+
     private final MaestroMapper maestroMapper;
 
     @Override
@@ -34,7 +38,7 @@ public class MaestroServiceImpl implements MaestroService{
     @Override
     @Transactional(readOnly = true)
     public MaestroResponse obtenerPorId(Long id) {
-        log.info("Listando productos por id: " + id);
+        log.info("Listando producto por id: " + id);
 
         return maestroMapper.entidadAResponse(obtenerMaestro(id));
     }
@@ -81,6 +85,10 @@ public class MaestroServiceImpl implements MaestroService{
         Maestro maestro = obtenerMaestro(id);
 
         log.info("Eliminando maestro con id: {}", id);
+
+        if (grupoRepository.existsByMaestroId(id))
+            throw new EntidadRelacionadaException(
+                    "No se puede eliminar el maestro ya que tiene grupos asignados");
 
         maestroRepository.delete(maestro);
 
