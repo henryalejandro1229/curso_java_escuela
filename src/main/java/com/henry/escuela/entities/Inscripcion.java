@@ -1,5 +1,6 @@
 package com.henry.escuela.entities;
 
+import com.henry.escuela.enums.DiaSemana;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,5 +39,11 @@ public class Inscripcion {
 
     @OneToOne(mappedBy = "inscripcion", fetch = FetchType.LAZY)
     private Calificacion calificacion;
+
+    public void actualizar(Alumno alumno, Grupo grupo) {
+        this.alumno = alumno;
+        this.grupo = grupo;
+        //No se actualiza fecha de inscripcion ya que solo es edición
+    }
 }
 

@@ -17,7 +17,7 @@ public class CursoMapper implements CommonMapper<CursoRequest, CursoResponse, Cu
                 ? request.descripcion().trim() : null;
 
         return Curso.builder()
-                .nombre(request.nombre())
+                .nombre(request.nombre().trim())
                 .descripcion(descripcion)
                 .creditos(request.creditos())
                 .build();

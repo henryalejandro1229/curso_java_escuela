@@ -1,5 +1,6 @@
 package com.henry.escuela.entities;
 
+import com.henry.escuela.utils.StringCustonUtils;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,13 @@ public class Aula {
     @Column(name = "CAPACIDAD", nullable = false)
     private Integer capacidad;
 
+    public void actualizar(String nombre, Integer capacidad) {
 
+        StringCustonUtils.validarTamanio(nombre, 1, 50,
+                "El nombre es requerido y debe tener entre 1 y 50 caracteres");
+
+        this.nombreAula = nombre.trim();
+        this.capacidad = capacidad;
+    }
 
 }
